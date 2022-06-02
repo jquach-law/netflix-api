@@ -51,8 +51,6 @@ netflix = Table(
     Column('description', String)
 )
 
-# meta.create_all(engine)
-# meta.drop_all(engine)
 # session = Session(engine, future=True)
 
 # Index page
