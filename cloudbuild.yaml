@@ -1,0 +1,28 @@
+steps:
+  # Docker Build
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'netflix-image', '.']
+
+  # Docker Tag
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['tag', 'netflix-image', 'gcr.io/data-sunlight-347619/netflix-image']
+
+  # Docker push to Google Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/data-sunlight-347619/netflix-image']
+
+  # Deploy to Cloud Run
+  - name: google/cloud-sdk
+    args: ['gcloud', 'run', 'deploy', 'netflix1', 
+           '--image=gcr.io/data-sunlight-347619/netflix-image', 
+           '--add-cloudsql-instances=$INSTANCE_CONNECTION_NAME',
+           '--region', 'us-central1', '--platform', 'managed', 
+           '--allow-unauthenticated']
+
+
+# Store images in Google Artifact Registry 
+images:
+  - gcr.io/data-sunlight-347619/netflix-image
+
+
+  
