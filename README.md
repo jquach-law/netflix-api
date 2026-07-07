@@ -42,4 +42,3 @@ A REST API for querying, filtering, and managing a dataset of Netflix titles (mo
 ## Notes
 
 This was a personal project built to practice REST API design, SQLAlchemy queries, and deploying a containerized service to GCP. It's not actively maintained and has known rough edges (e.g., mutation endpoints using GET instead of POST/PUT/DELETE).
-=======
